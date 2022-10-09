@@ -1,4 +1,4 @@
-const { prompt, default: inquirer } = require("inquirer");
+const { prompt } = require("inquirer");
 const logo = require("asciiart-logo");
 const db = require("./db");
 require("console.table");
@@ -19,15 +19,15 @@ function init() {
       choices: ["View All Employees", "Add Employee", "Update Employee Role","View All Roles", "Add Role", "View All Departments", "Add Department"],
       name: "mainChoices"
     }
+    
   ])
   .then((response) => {
+    console.log(response)
     switch (response) {
-      case "View All Employees":
-        
-  
-        
+      case response === "View All Employees":
         break;
-      case "Add Employee":
+
+      case response === "Add Employee":
         prompt([
           {
             type:"input",
@@ -51,10 +51,8 @@ function init() {
             message: "Who is the employee's manager",
             choices: ["Nick Mason", "Sarah Parker", "Chris Tucker", "Samantha Jackson", "Lauren Thomas"],
             name: "employeeManager"
-  
           }
-  
-        ])
+      ])
         break;
       
       case "Update Employee Role":
@@ -109,7 +107,7 @@ function init() {
 };
 
 // Exit the application
-function quit() {
-  console.log("Goodbye!");
-  process.exit();
-}
+// function quit() {
+//   console.log("Goodbye!");
+//   process.exit();
+// }
