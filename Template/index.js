@@ -1,6 +1,6 @@
 const { prompt } = require("inquirer");
 const logo = require("asciiart-logo");
-const db = require("./db");
+const db = require('./db/index');
 require("console.table");
 
 init();
@@ -16,49 +16,78 @@ function init() {
     {
       type: 'list',
       message:'What would you like to do?',
-      choices: ["View All Employees", "Add Employee", "Update Employee Role","View All Roles", "Add Role", "View All Departments", "Add Department"],
+      choices: ["View All Employees", "Add Employee", "Update Employee Role","View All Roles", "Add Role", "View All Departments", "Add Department", "quit"],
       name: "mainChoices"
     }
     
   ])
   .then((response) => {
+    response = response.mainChoices
     console.log(response)
     switch (response) {
-      case response === "View All Employees":
+      case  "View All Employees":
+        viewAllEmployees();
+        init();
+
         break;
 
-      case response === "Add Employee":
+      case "Add Employee":
         prompt([
           {
             type:"input",
             message:"What is the employee's first name?",
-            name: "employeefirstName"
+            name: "first_name"
           },
           {
             type:"input",
             message:"What is the employee's last name?",
-            name: "employeelastName"
+            name: "last_name"
           
           },
           {
             type: "list",
-            message: "What is the employee's role?",
-            choices: ["Salesperson", "Sales Lead", "Lawyer", "Legal Intern", "Accountant", "Account Manager", "Lead Engineer", "Software Engineer", "Lead Marketer", "Marketing Team Member"],
-            name: "employeeRole"
+            message: "What is the employee's role id",
+            choices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            name: "role_id"
           },
           {
             type:"list",
-            message: "Who is the employee's manager",
-            choices: ["Nick Mason", "Sarah Parker", "Chris Tucker", "Samantha Jackson", "Lauren Thomas"],
-            name: "employeeManager"
+            message: "What is the employee's manager's id?",
+            choices: [1, 2, 3, 4, 5],
+            name: "manager_id"
           }
       ])
+      .then((response) => {
+        console.log(response)
+        addEmployee(response)
+        init();
+
+
+      })
         break;
       
       case "Update Employee Role":
+        prompt([
+          {
+            type:"list",
+            message: "which employee would you like to update?",
+            choices: []
+          },
+          {
+            type:"input",
+            message:"what is the employees new role id?",
+            name: "newroleID"
+
+          }
+        ])
+        updateRole(response);
+        init();
+
         break;
   
       case "View All Roles":
+        viewAllRoles();
+        init();
         break;
       
       case "Add Role":
@@ -83,6 +112,8 @@ function init() {
         break;
       
       case "View All Departments":
+        viewAllDepartments();
+        init();
         break;
   
       case "Add Department":
@@ -90,24 +121,32 @@ function init() {
           {
             type:"input",
             message:" What is the name of the new Department?",
-            name:"newDepartment"
+            name:"dep_name"
           }
         ])
+        .then((response) => {
+          console.log(response)
+          addDepartment(response);
+          init();
+          
+
+        })
+  
+
         break;
     
-      default:
+      case "quit":
+        quit();
         break;
     }
 
   });
   
- 
-
-  // loadPrompts();
 };
 
-// Exit the application
-// function quit() {
-//   console.log("Goodbye!");
-//   process.exit();
-// }
+
+
+function quit() {
+  console.log("Goodbye!");
+  process.exit();
+}
