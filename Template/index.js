@@ -79,9 +79,13 @@ function init() {
             name: "newroleID"
 
           }
-        ])
-        updateRole(response);
-        init();
+        ])  .then((response) => {
+          console.log(response)
+          addEmployee(response)
+          init();
+  
+  
+        })
 
         break;
   
