@@ -39,5 +39,10 @@ addEmployee = (response) =>
   db.query(`UPDATE employee SET role_id WHERE ${response.newroleID};`, (err,res) => {
     if(err) throw (err);
     console.table(res);
-  } )
+  });
 
+  addRole = (response) => 
+  db.query(`INSERT INTO roles(title, salary, department_id) VALUES('${response.roleTitle}, '${response.roleSalary}', ${response.roleDepartment});`, (err, res) => {
+    if(err) throw(err);
+    console.table(res);
+  });

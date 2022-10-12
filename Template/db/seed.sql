@@ -19,14 +19,14 @@ VALUES ("Salesperson", '65000', 1),
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Nick", "Mason", 1, 1),
-       ("Bob", "Ross", 1, 2),
-       ("John", "Smith", 2, 1),
-       ("Chris", "Tucker", 3,  3),
-       ("Samantha", "Jackson", 4, 4),
-       ("Sarah", "Parker", 5, 2),
-       ("Jane", "Doe", 6, 2),
-       ("Kim", "Smith", 7, 1),
-       ("Lauren", "Thomas", 8, 5);
+       ("Bob", "Ross", 2, 2),
+       ("John", "Smith", 3, 1),
+       ("Chris", "Tucker", 4,  3),
+       ("Samantha", "Jackson", 5, 4),
+       ("Sarah", "Parker", 6, 2),
+       ("Jane", "Doe", 7, 2),
+       ("Kim", "Smith", 8, 1),
+       ("Lauren", "Thomas", 9, 5);
 
 
 

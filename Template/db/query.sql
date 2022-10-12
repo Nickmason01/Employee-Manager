@@ -1,0 +1,1 @@
+SELECT * FROM employee JOIN roles ON role_id = employee.id

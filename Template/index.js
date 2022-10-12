@@ -70,8 +70,8 @@ function init() {
         prompt([
           {
             type:"list",
-            message: "which employee would you like to update?",
-            choices: []
+            message: "which employee role id  would you like to update?",
+            choices: [1 ,2 ,3, 4, 5, 6, 7, 8, 9]
           },
           {
             type:"input",
@@ -88,6 +88,7 @@ function init() {
       case "View All Roles":
         viewAllRoles();
         init();
+        
         break;
       
       case "Add Role":
@@ -95,7 +96,7 @@ function init() {
           {
             type:"input",
             message:"What is the name of the new Role?",
-            name:"newRole"
+            name:"roleTitle"
           },
           {
             type:"input",
@@ -109,6 +110,13 @@ function init() {
             name:"roleDepartment"
           }
         ])
+        .then((response) => {
+          console.log(response)
+          addRole(response)
+          
+          init();
+          
+        })
         break;
       
       case "View All Departments":
